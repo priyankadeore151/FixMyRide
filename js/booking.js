@@ -311,6 +311,8 @@ const Booking = {
             };
         }, 3000);
     },
+
+    renderConfirmation(container) {
         container.innerHTML = `
             <div class="fade-in" style="max-width: 600px; margin: 0 auto;">
                 <h1 style="margin-bottom: 2rem;">Confirm Booking</h1>
