@@ -61,11 +61,11 @@ const Maps = {
                         </div>
                         <!-- Mechanic markers -->
                         ${this.mechanics.map((m, i) => {
-                            const positions = [
-                                {x:25,y:30},{x:72,y:22},{x:18,y:68},{x:80,y:60},{x:40,y:78},{x:68,y:75}
-                            ];
-                            const p = positions[i] || {x:50,y:50};
-                            return `
+            const positions = [
+                { x: 25, y: 30 }, { x: 72, y: 22 }, { x: 18, y: 68 }, { x: 80, y: 60 }, { x: 40, y: 78 }, { x: 68, y: 75 }
+            ];
+            const p = positions[i] || { x: 50, y: 50 };
+            return `
                             <div class="mapsearch-mech-pin ${m.available ? '' : 'unavailable'}"
                                  style="left:${p.x}%;top:${p.y}%"
                                  onclick="Maps.selectMechanic(${m.id})"
@@ -76,7 +76,7 @@ const Maps = {
                                     <span>${m.distance} km • ${m.eta} min</span>
                                 </div>
                             </div>`;
-                        }).join('')}
+        }).join('')}
                         <!-- Radius circles -->
                         <div class="mapsearch-radius r1" style="left:${this.state.userPos.x}%;top:${this.state.userPos.y}%"></div>
                         <div class="mapsearch-radius r2" style="left:${this.state.userPos.x}%;top:${this.state.userPos.y}%"></div>
@@ -86,22 +86,22 @@ const Maps = {
                     <div class="mapsearch-sidebar">
                         <!-- Filters -->
                         <div class="mapsearch-filters">
-                            <button class="mapsearch-filter-btn ${this.state.filter==='all'?'active':''}" onclick="Maps.setFilter('all')">All</button>
-                            <button class="mapsearch-filter-btn ${this.state.filter==='available'?'active':''}" onclick="Maps.setFilter('available')">Available</button>
-                            <button class="mapsearch-filter-btn ${this.state.filter==='nearest'?'active':''}" onclick="Maps.setFilter('nearest')">Nearest</button>
-                            <button class="mapsearch-filter-btn ${this.state.filter==='top'?'active':''}" onclick="Maps.setFilter('top')">Top Rated</button>
+                            <button class="mapsearch-filter-btn ${this.state.filter === 'all' ? 'active' : ''}" onclick="Maps.setFilter('all')">All</button>
+                            <button class="mapsearch-filter-btn ${this.state.filter === 'available' ? 'active' : ''}" onclick="Maps.setFilter('available')">Available</button>
+                            <button class="mapsearch-filter-btn ${this.state.filter === 'nearest' ? 'active' : ''}" onclick="Maps.setFilter('nearest')">Nearest</button>
+                            <button class="mapsearch-filter-btn ${this.state.filter === 'top' ? 'active' : ''}" onclick="Maps.setFilter('top')">Top Rated</button>
                         </div>
                         <h3 style="margin-bottom:1rem">${filtered.length} Mechanics Found</h3>
                         <div class="mapsearch-list">
                             ${filtered.map(m => `
-                                <div class="mapsearch-card ${this.state.selectedMechanic===m.id?'selected':''}" onclick="Maps.selectMechanic(${m.id})" id="mcard-${m.id}">
+                                <div class="mapsearch-card ${this.state.selectedMechanic === m.id ? 'selected' : ''}" onclick="Maps.selectMechanic(${m.id})" id="mcard-${m.id}">
                                     <div class="mapsearch-card-top">
-                                        <div class="mapsearch-avatar" style="background:${m.available?'var(--primary)':'#64748b'}">${m.avatar}</div>
+                                        <div class="mapsearch-avatar" style="background:${m.available ? 'var(--primary)' : '#64748b'}">${m.avatar}</div>
                                         <div style="flex:1">
                                             <h4 style="margin:0">${m.name}</h4>
                                             <p style="font-size:0.8rem;color:var(--text-muted);margin:0">${m.specialty}</p>
                                         </div>
-                                        <span class="mapsearch-status ${m.available?'online':'offline'}">${m.available?'Online':'Busy'}</span>
+                                        <span class="mapsearch-status ${m.available ? 'online' : 'offline'}">${m.available ? 'Online' : 'Busy'}</span>
                                     </div>
                                     <div class="mapsearch-card-stats">
                                         <span>⭐ ${m.rating} (${m.reviews})</span>
@@ -125,8 +125,8 @@ const Maps = {
     getFiltered() {
         let list = [...this.mechanics];
         if (this.state.filter === 'available') list = list.filter(m => m.available);
-        if (this.state.filter === 'nearest') list.sort((a,b) => a.distance - b.distance);
-        if (this.state.filter === 'top') list.sort((a,b) => b.rating - a.rating);
+        if (this.state.filter === 'nearest') list.sort((a, b) => a.distance - b.distance);
+        if (this.state.filter === 'top') list.sort((a, b) => b.rating - a.rating);
         return list;
     },
 
